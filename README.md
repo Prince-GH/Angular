@@ -54,3 +54,38 @@ Let's learn angular
 `.Controller` : It's helps to bind the `view` and `view-model`.
 
  `'use strict'` is a good practice as it helps write cleaner and safer JavaScript code by enforcing stricter parsing and error handling.
+
+## Lecture 5
+ 
+**Sharing data with the view through `$scope`**
+
+```JS
+(
+   function (){
+      'use strict'
+      angular.module('moduleName', [])
+      .Controller('nameCont', ($scope))
+
+      $scope.name = "Prince";
+      $scope.invite = () => "A🍎 Apple is better then 🍌 banana";
+   }
+)();
+```
+
+`$scope`: prefix `$` is a reserved keyword for angular.
+`$scope.name` : name variable is created and value also share to the   `ng-module` and `{{name}}` to the view `Controller`.
+
+**How to access `$scope` data to view ❔**
+
+In the `<div ng-Controller="nameCont">...</div>` use : 
+- `{{ name }}` to access the variable.
+- `{{ invite() }}` to access the function.
+- `ng-module="name"` to set the value as attribute.
+
+```html
+<div ng-Controller="nameCont">
+    <h5>Name:{{name}}</h5> //Prince
+    {{ invite() }} // 🍎 Apple is better then 🍌 banana
+    <input type="text" ng-module="name"> //set value
+</div>
+```

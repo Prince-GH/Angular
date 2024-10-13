@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body ng-app="CalculateApp">
+        <h5>Calculate Count</h5>
+        <div ng-controller="CalAscii">
+            <input type="text" ng-model="name" ng-keyup="CalASCIItotal()">
+        
+            <h4>Total Count of ASCII of {{name}} is {{totalCount}}</h4>
+        </div>
+</body>
+<script src="./angular.min.js"></script>
+<script src="./app.js"></script>
+</html>

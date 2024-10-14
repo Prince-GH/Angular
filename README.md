@@ -27,8 +27,9 @@ Let's learn angular
 
 ## Lecture 4
 
-**🌱 Install Angularjs 1.x version** : 
+**🌱 Install Angularjs 1.x version** 
 [Install AngularJs](https://code.angularjs.org/)
+
 
 ```html
 <html ng-app="moduleName">
@@ -56,8 +57,10 @@ Let's learn angular
  `'use strict'` is a good practice as it helps write cleaner and safer JavaScript code by enforcing stricter parsing and error handling.
 
 ## Lecture 5
+---
  
 **Sharing data with the view through `$scope`**
+---
 
 ```JS
 (
@@ -90,6 +93,7 @@ In the `<div ng-Controller="nameCont">...</div>` use :
 </div>
 ```
 ## Lecture 9
+---
 
 **Dependancy Injection 💉**
 ```
@@ -101,3 +105,60 @@ Design pattern used to pass the dependencies (objects or services)... that a cla
 `$filter`: It is used to formate the data.
 
 `$injector`: It is used to check all the service dependancy of controller under the hood.
+
+
+
+
+## Lecture 10
+---
+
+**Protecting dependency injection from minification**
+---
+> "`🔍minification` is a process of **removing** all unnessary characters from source code without changing its functionality"
+
+eg: 
+```js
+!function(){function e(e,n){e.name="Prince",e.upCase=function(){let c=n("uppercase");e.name=c(e.name)}}angular.module("DIapp",[]).controller("DIcontroller",e),e.$inject=["$scope","$filter"]}();
+```
+
+***
+**Two ways to add the Injection 💉**
+
+
+**1 .** Inject as an array.
+```js
+(
+    function (){
+        angular.module('DIapp', [])
+        .controller('DIcontroller',['$scope', '$filter', DIcontroller])
+        
+        function DIcontroller($scope, $filter){
+            $scope.name = "Prince";
+            $scope.upCase = function () {
+                let upcase = $filter('uppercase');
+                $scope.name = upcase($scope.name);
+            }
+        }
+    }
+)();
+```
+**2 .** Inject as an `$inject`.
+```js
+(
+    function (){
+        angular.module('DIapp', [])
+        .controller('DIcontroller',DIcontroller);
+
+        DIcontroller.$inject = ['$scope', '$filter'];
+
+        function DIcontroller($scope, $filter){
+            $scope.name = "Prince";
+            $scope.upCase = function () {
+                let upcase = $filter('uppercase');
+                $scope.name = upcase($scope.name);
+            }
+        }
+    }
+)();
+```
+***

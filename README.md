@@ -89,3 +89,15 @@ In the `<div ng-Controller="nameCont">...</div>` use :
     <input type="text" ng-module="name"> //set value
 </div>
 ```
+## Lecture 9
+
+**Dependancy Injection 💉**
+```
+Design pattern used to pass the dependencies (objects or services)... that a class or function needs, instead of creating them inside.... It implements Inversion of Control (IoC) by delegating the responsibility of dependency creation to an external system.
+```
+
+**How Dependency injection works in JavaScript ?**
+---
+`$filter`: It is used to formate the data.
+
+`$injector`: It is used to check all the service dependancy of controller under the hood.

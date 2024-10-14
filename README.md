@@ -162,3 +162,17 @@ eg:
 )();
 ```
 ***
+
+## Lecture 11
+---
+
+**Expression**
+- An expression is anything that evaluates to a value.
+- In Angular, expressions are tied to the scope they belong to.
+- They do not throw TypeError or ReferenceError if the value is undefined or invalid.
+- Syntax: {{ expression }}
+
+**Interpolation**
+- Interpolation replaces placeholders in a string with dynamic values.
+- In Angular, placeholders are typically expressions.
+- The result is automatically updated when the value of the placeholder changes.

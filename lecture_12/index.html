@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="filter-app">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div ng-controller="filter-control">
+        <input type="number" placeholder="Salary" ng-model="Salary">
+        <!-- <H2>Salary: {{ExchangeSalary()}}</H2> -->
+         <h2>Salary: {{Salary | currency}}</h2>
+    </div>
+</body>
+<script src="angular.min.js"></script>
+<script src="app.js"></script>
+</html>

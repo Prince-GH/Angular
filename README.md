@@ -273,8 +273,10 @@ eg:
 
   - **In Html**
     - ```html
-      {{text}}<hr>{{replaceText()}}
-       ```
+      {{text}}
+      <hr />
+      {{replaceText()}}
+      ```
 
   ### **Custome Filter with multiple argument**
 
@@ -315,35 +317,90 @@ eg:
       ```
 
   - **In Html**
-     - ```html
-       {{replaceText | "Arjun" : "Shiva"}} 
-       ```
+    - ```html
+      {{replaceText | "Arjun" : "Shiva"}}
+      ```
 
-***
+---
 
 ## Lecture 14
+
 ---
 
 ### 🔁 Digest Cycle
 
 ![alt text](/Media/digestCycle.png)
-***
+
+---
+
 ## ⚔ Event Handling in Angular
 
 ### ⚔ Event Queue
+
 - All event handling in Angular is managed through the event queue, which organizes and processes events as they occur.
 
 ### ⚔ ng-events
+
 - Refers to anonymous events and special events specific to Angular. These events enable dynamic interaction within Angular applications.
 
 ### ⚔ $digest Cycle
+
 - A special mechanism in Angular that processes `ng-events` and ensures that changes are propagated throughout the application. It runs a series of checks to update the view when the model changes.
 
 ### ⚔ Watchers
+
 - Functions that monitor specific properties in the scope for changes. When a watched property is modified, the associated handler is invoked to update the UI accordingly.
 
 ### ⚔ Digest Loop
+
 - This loop checks for changes in the values of the watchers. If changes are detected, it updates the relevant properties; if not, it maintains the current state. This loop runs automatically during events but can also be triggered manually.
 
 ### ⚔ Dirty Checking
+
 - A process that repeatedly checks the state of watchers to determine if any value has changed. If a change is detected, the digest cycle is initiated to update the application state.
+
+---
+
+eg:<br>
+
+```JavaScript
+(function (){
+    'use strict'
+
+    angular.module('watcherApp', [])
+    .controller('watcherControl',ctrlWatcher)
+    $inject.ctrlWatcher = ['$scope', '$filter'];
+    function ctrlWatcher ($scope){
+
+        $scope.Count = 0;
+        $scope.CountInc = 0;
+
+        $scope.WatcherCount = function () {
+            console.log($scope);
+            console.log("No. of watchers: ",$scope.$$watchersCount);
+
+        }
+
+        $scope.OnceCount = function () {
+            $scope.Count = 1;
+        }
+
+        $scope.OnceCountIncrement = function () {
+            $scope.CountInc++;
+        }
+
+
+        //Watcher 1 to focus on Count
+        $scope.$watch('Count',function (newVal, oldVal) {
+            console.log("Old Value: ",oldVal);
+            console.log("New Value: ",newVal);
+        })
+
+        //Watcher 2 to focus on CountInc
+        $scope.$watch('CountInc', (newVal, oldVal)=>{
+            console.log("Inc newVal: ",newVal);
+            console.log("Inc oldVal: ",oldVal);
+        })
+    }
+})();
+```

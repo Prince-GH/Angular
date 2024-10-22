@@ -7,11 +7,19 @@
 </head>
 <body>
     <div ng-controller="watcherControl">
+        <input type="text" ng-model="MyName">
+        <br><br>
         <button ng-click="WatcherCount()">Total WatcherMethods</button>
         <br><br>
         <button ng-click="OnceCount()">CountOnce</button>
         <br><br>
         <button ng-click="OnceCountIncrement()">CountOnceIncrement</button>
+        <br><br>
+        <div>
+            Count: {{Count}}
+            <br>
+            CountInc: {{CountInc}}
+        </div>
     </div>
 
     <script src="angular.min.js"></script>

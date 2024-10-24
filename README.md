@@ -404,3 +404,71 @@ eg:<br>
     }
 })();
 ```
+***
+## Lecture 15
+---
+### $digest
+
+`$digest` cycle doesn't triggered automatically if event are unaware of angular.
+
+eg:<br>
+```JavaScript
+$scope.counterA++;
+  setTimeout(()=>{
+    $scope.counterB++;
+  },2000);
+
+  //Output : 1 , 0(val B doesn't updated)
+```
+
+eg:<br>
+```JavaScript
+$scope.counterA++;
+setTimeout(()=>{
+    $scope.counterB++;
+    $scope.$digest();
+},2000);
+
+//Output : 1 , 1 (val updated after 2sec)
+```
+
+You can wrap you Custome code in $apply() service also it will do the same but both updated at same time.
+
+eg:<br>
+```JavaScript
+setTimeout(()=>{
+$scope.$apply(()=>{
+    $scope.counterA++;
+    $scope.counterB++;
+  });
+},2000)
+
+//Output : 1 , 1 (both val updated after 2sec)
+```
+
+If you want to use a direct service that recored the changes. So you can you `$timeout` service.
+
+eg:<br>
+```JavaScript
+(()=>{
+    angular.module("app",[])
+    .controller('ctrl',Ctrl)
+    Ctrl.$inject = ['$scope', '$timeout']
+    function Ctrl ($scope, $timeout){
+        
+        $scope.counterA = 0;
+        $scope.counterB = 0;
+
+        $scope.inc = ()=>{
+            $timeout(()=>{
+                $scope.counterA++;
+                $scope.counterB++;
+            },2000)
+        }        
+    }
+})();
+
+//Output 1 , 1
+```
+
+***
